@@ -1,6 +1,6 @@
 // Arreglo que contiene las intrucciones del juego
-let inst1 = "Clic en la pieza cuya posición querés modificar.";
-let inst2 = "Clic en la posición donde querés colocar la pieza seleccionada.";
+let inst1 = "Podés mover las piezas solamente hacia el espacio en blanco";
+let inst2 = "Presioná la flecha en tu teclado con la dirección hacia donde querés mover la pieza.";
 let inst3 = "Repetí hasta terminar."
 let instrucciones = [inst1, inst2, inst3];
 // Arreglo para ir guardando los movimientos que se vayan realizando
@@ -78,10 +78,9 @@ function actualizarPosicionVacia(nuevaFila, nuevaColumna) {
 
 // Para chequear si la posicón está dentro de la grilla.
 function posicionValida(fila, columna) {
-  if(fila <= (grilla.length - 1) && columna <= (grilla.length - 1)) {
+  if((fila <= 2 && columna <=2)&&(fila>=0 && columna >=0)){
     return true;
-  }
-  else {
+  } else {
     return false;
   }
 }
@@ -123,9 +122,9 @@ function moverEnDireccion(direccion) {
     if (posicionValida(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia)) {
         intercambiarPosiciones(filaVacia, columnaVacia, nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
         actualizarPosicionVacia(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
-        agregarUltimoMovimiento(direccion);
-  //COMPLETAR: Agregar la dirección del movimiento al arreglo de movimientos
 
+  //COMPLETAR: Agregar la dirección del movimiento al arreglo de movimientos
+        agregarUltimoMovimiento(direccion);
     }
 }
 
