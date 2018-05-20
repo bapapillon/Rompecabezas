@@ -1,16 +1,12 @@
 // Arreglo que contiene las intrucciones del juego
-let inst1 = "Bienvenido al rompecabezas. En primer lugar tenés que hacer clic en la pieza cuya posición querés modificar.";
-let inst2 = "En segundo lugar, tenés que hacer clic en la posición donde querés colocar la pieza seleccionada.";
-let inst3 = "Repetí los pasos uno y dos, hasta que logres terminar de armar el rompecabezas."
+let inst1 = "Clic en la pieza cuya posición querés modificar.";
+let inst2 = "Clic en la posición donde querés colocar la pieza seleccionada.";
+let inst3 = "Repetí hasta terminar."
 let instrucciones = [inst1, inst2, inst3];
 // Arreglo para ir guardando los movimientos que se vayan realizando
 let movimientos = [];
 
 
-function agregarUltimoMovimiento(direccion) {
-  movimientos.push(direccion);
-    actualizarUltimoMovimiento();
-}
 
 // Representación de la grilla. Cada número representa a una pieza.
 // El 9 es la posición vacía
@@ -33,22 +29,26 @@ function mostrarInstrucciones(instrucciones) {
   for(i=0; i < instrucciones.length; i++) {
     mostrarInstruccionEnLista(instrucciones[i]);
   }
-    //COMPLETAR
 }
 
 /* COMPLETAR: Crear función que agregue la última dirección al arreglo de movimientos
 y utilice actualizarUltimoMovimiento para mostrarlo en pantalla */
 
+function agregarUltimoMovimiento(direccion) {
+  movimientos.push(direccion);
+    actualizarUltimoMovimiento(direccion);
+}
+
 /* Esta función va a chequear si el Rompecabezas esta en la posicion ganadora.
 Existen diferentes formas de hacer este chequeo a partir de la grilla. */
-function chequearSiGano(grilla) {
-    gane = JSON.stringify(grilla)===JSON.stringify([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
-    return gane;
+function chequearSiGano() {
+  chequeo = JSON.stringify(grilla)===JSON.stringify([[1, 2, 3], [4, 5, 6], [7, 8, 9]]);
+  return chequeo;
 }
 
 // Implementar alguna forma de mostrar un cartel que avise que ganaste el juego
 function mostrarCartelGanador() {
-    if(JSON.stringify(grilla)===JSON.stringify([[1, 2, 3], [4, 5, 6], [7, 8, 9]])) {
+    if(chequeo === true) {
       alert("¡Felicitaciones! Has completado el rompecabezas.");
     }
 }
@@ -64,14 +64,15 @@ En vez de intercambiar esos valores vamos a terminar teniendo en ambas posicione
 Se te ocurre cómo solucionar esto con una variable temporal?
 */
 function intercambiarPosicionesGrilla(filaPos1, columnaPos1, filaPos2, columnaPos2) {
-    valorAnterior = grilla[filaPos1][columnaPos1];
+    valorIntercambio = grilla[filaPos1][columnaPos1];
     grilla[filaPos1][columnaPos1] = grilla[filaPos2][columnaPos2];
-    grilla[filaPos2][columnaPos2] = valorAnterior;
+    grilla[filaPos2][columnaPos2] = valorIntercambio;
 }
 
 // Actualiza la posición de la pieza vacía
 function actualizarPosicionVacia(nuevaFila, nuevaColumna) {
-
+  filaVacia=nuevaFila;
+  columnaVacia=nuevaColumna;
 }
 
 
