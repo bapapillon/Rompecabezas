@@ -64,9 +64,9 @@ En vez de intercambiar esos valores vamos a terminar teniendo en ambas posicione
 Se te ocurre cómo solucionar esto con una variable temporal?
 */
 function intercambiarPosicionesGrilla(filaPos1, columnaPos1, filaPos2, columnaPos2) {
-    valorIntercambio = grilla[filaPos1][columnaPos1];
+    valorIntercambiado = grilla[filaPos1][columnaPos1];
     grilla[filaPos1][columnaPos1] = grilla[filaPos2][columnaPos2];
-    grilla[filaPos2][columnaPos2] = valorIntercambio;
+    grilla[filaPos2][columnaPos2] = valorIntercambiado;
 }
 
 // Actualiza la posición de la pieza vacía
@@ -89,8 +89,8 @@ function posicionValida(fila, columna) {
 /* Movimiento de fichas, en este caso la que se mueve es la blanca intercambiando su posición con otro elemento.
 Las direcciones están dadas por números que representa: arriba (38), abajo (40), izquierda (37), derecha (39) */
 function moverEnDireccion(direccion) {
-  var nuevaFilaPiezaVacia;
-  var nuevaColumnaPiezaVacia;
+  let nuevaFilaPiezaVacia;
+  let nuevaColumnaPiezaVacia;
 
   // Mueve pieza hacia la abajo, reemplazandola con la blanca
   if (direccion === codigosDireccion.ABAJO) {
@@ -106,13 +106,13 @@ function moverEnDireccion(direccion) {
 
   // Mueve pieza hacia la derecha, reemplazandola con la blanca
   else if (direccion === codigosDireccion.DERECHA) {
-    nuevaColumnaPiezaVacia = columnaVacia + 1;
+    nuevaColumnaPiezaVacia = columnaVacia - 1;
     nuevaFilaPiezaVacia = filaVacia;
   }
 
   // Mueve pieza hacia la izquierda, reemplazandola con la blanca
   else if (direccion === codigosDireccion.IZQUIERDA) {
-     nuevaColumnaPiezaVacia = columnaVacia - 1;
+     nuevaColumnaPiezaVacia = columnaVacia + 1;
      nuevaFilaPiezaVacia = filaVacia;
   }
 
@@ -123,7 +123,7 @@ function moverEnDireccion(direccion) {
     if (posicionValida(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia)) {
         intercambiarPosiciones(filaVacia, columnaVacia, nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
         actualizarPosicionVacia(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
-
+        agregarUltimoMovimiento(direccion);
   //COMPLETAR: Agregar la dirección del movimiento al arreglo de movimientos
 
     }
@@ -157,8 +157,8 @@ el intercambio en la pantalla (DOM). Para que funcione debera estar implementada
 la funcion intercambiarPosicionesGrilla() */
 function intercambiarPosiciones(fila1, columna1, fila2, columna2) {
   // Intercambio posiciones en la grilla
-  var pieza1 = grilla[fila1][columna1];
-  var pieza2 = grilla[fila2][columna2];
+  let pieza1 = grilla[fila1][columna1];
+  let pieza2 = grilla[fila2][columna2];
 
   intercambiarPosicionesGrilla(fila1, columna1, fila2, columna2);
   intercambiarPosicionesDOM('pieza' + pieza1, 'pieza' + pieza2);
